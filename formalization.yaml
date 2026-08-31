@@ -1,0 +1,164 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "lean-spectral-theory"
+  description: >-
+    The spectral theorem for possibly unbounded self-adjoint operators on
+    complex Hilbert spaces, formalized through the Cayley transform and real
+    projection-valued measures. The selected spectral theorem constructs a
+    PVM whose scalar measures give the exact finite-second-moment domain and
+    first-moment quadratic form, with measurable-set uniqueness, and is proved
+    equivalent to equality with the unbounded coordinate spectral integral.
+    The selected Stone theorem proves both that strongly continuous
+    one-parameter unitary groups have self-adjoint generators and that every
+    self-adjoint operator generates such a group.
+  authors:
+    - "Ezzeri Esa"
+  responsible_maintainers:
+    - "Ezzeri Esa"
+  license: "Apache-2.0"
+
+classification:
+  arxiv: ["math.FA", "math.OA"]
+  msc2020: ["47A10", "47B15"]
+
+sources:
+  - title: "Unbounded Self-adjoint Operators on Hilbert Space"
+    authors:
+      - "Konrad Schmüdgen"
+    type: "book"
+    id: "10.1007/978-94-007-4753-1"
+    location: "Chapters 4–5"
+    relationship: "formalizes"
+    author_endorsement: "not-contacted"
+    note: >-
+      The Lean proof follows the standard Cayley-transform and
+      projection-valued-measure route to the general spectral theorem for
+      self-adjoint operators. The submitted statement records existence and
+      measurable-set uniqueness through scalar spectral measures.
+  - title: "Methods of Modern Mathematical Physics I: Functional Analysis"
+    authors:
+      - "Michael Reed"
+      - "Barry Simon"
+    type: "book"
+    id: "ISBN 978-0-12-585050-6"
+    location: "Chapters VII–VIII"
+    relationship: "formalizes"
+    author_endorsement: "not-contacted"
+    note: >-
+      Reference for the spectral theorem, functional calculus,
+      one-parameter unitary groups, and both directions of Stone's theorem.
+
+related_formalizations:
+  - id: "https://github.com/savarin/lean-spectral-theorem/tree/c0ac9033a9e761082fd2cf5978ff43de0cd15bbf"
+    relationship: "supersedes"
+    note: >-
+      The proof body was copied from this completed development. The present
+      repository adds intrinsic spectral and Stone boundary layers and
+      replaces its overlong implementation-level Challenge with the auditable
+      Mathlib-only submission boundary.
+
+status:
+  scope: >-
+    Two compared theorems and zero definition holes. StoneChallenge.lean is a
+    100-line Mathlib-only module defining a real projection-valued measure,
+    its scalar-measure representation relation, strongly continuous unitary
+    groups, and their intrinsic generator relation. The capstones state the
+    unbounded spectral theorem with measurable-set uniqueness and Stone's
+    theorem in both directions. The proof development contains no unresolved
+    sorry outside the two deliberate Challenge theorem placeholders.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Classical.choice"
+    - "Quot.sound"
+  main_results:
+    - declaration: "spectral_theorem_intrinsic"
+      file: "StoneSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator-stone.json"
+    - declaration: "stone_theorem_intrinsic"
+      file: "StoneSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator-stone.json"
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Fable (Anthropic)", "GPT 5.6 Sol (OpenAI)"]
+      framework: "Claude Code and Codex"
+      tool_setup: >-
+        Claude Code multi-agent formalization sessions produced and reviewed
+        the substantive proof development. Codex designed and verified the
+        intrinsic publication boundary, formal equivalence proof, metadata,
+        and Palomar Comparator configuration.
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+  notes: >-
+    The original implementation-level Challenge was 1,485 lines. A
+    disposable feasibility study reformulated the theorem through scalar
+    spectral measures, formally proved the new predicate equivalent to the
+    constructed unbounded spectral integral. The compact Stone boundary uses
+    an intrinsic difference-quotient generator relation. Both selected
+    theorems were tested against Palomar's pinned Comparator. An adversarial
+    change to the second-moment condition was correctly rejected as a
+    mismatch in PVM.Represents.
+
+fidelity:
+  divergences: >-
+    The spectral theorem is stated over an arbitrary complete complex
+    inner-product space and does not require separability. The PVM is
+    represented as a
+    function on all sets whose laws are imposed only on Borel-measurable
+    sets; consequently uniqueness is stated on measurable sets rather than
+    as literal structure equality. The operator identity is presented by its
+    exact second-moment domain and diagonal first-moment formula. The library
+    proves this formulation equivalent to equality with the unbounded
+    coordinate spectral integral by measure extensionality and complex
+    polarization. Support on the spectrum is not separately selected in the
+    submitted spectral theorem. The Stone theorem expresses generation by the
+    exact punctured-neighborhood difference quotient, rather than exposing
+    the library's choice-based implementation of its limit.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Ezzeri Esa"
+    - "Claude Code (Anthropic)"
+    - "Codex (OpenAI)"
+  notes: >-
+    The source was checked for unresolved proof placeholders, the compact
+    boundary was compiled independently, and both theorems were compared with
+    the exact Comparator revision pinned by Palomar using Lean's default
+    kernel, the exact NanoDa revision pinned by Palomar, and a Lean
+    4.33-compatible lean4export. Both kernels accepted the solution and
+    Comparator reported success. Local macOS verification used Comparator's
+    development fake-landrun wrapper; Palomar supplies the protected Landrun
+    sandbox during submission.
+
+alignment:
+  statements:
+    - source: "Schmüdgen, Chapters 4–5"
+      lean: "spectral_theorem_intrinsic"
+      module: "StoneSolution"
+      status: "proved"
+      note: >-
+        Projection-valued-measure form of the spectral theorem for unbounded
+        self-adjoint operators, including the exact operator domain,
+        first-moment representation, and measurable-set uniqueness.
+    - source: "Reed–Simon, Chapters VII–VIII"
+      lean: "stone_theorem_intrinsic"
+      module: "StoneSolution"
+      status: "proved"
+      note: >-
+        Both directions of Stone's theorem, with the infinitesimal generator
+        characterized by its exact difference-quotient domain and limit.
+
+acknowledgements: >-
+  Mathlib contributors; leanprover/comparator and NanoDa maintainers.

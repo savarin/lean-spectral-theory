@@ -1,2 +1,8 @@
 # cache and other artifacts produced by Lean's Lake build tool
 .lake/
+
+# squad coordination (local, per-agent state)
+.squad/
+.mcp.json
+.install-local.json
+.sessions/
