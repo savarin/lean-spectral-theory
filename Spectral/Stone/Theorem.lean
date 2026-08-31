@@ -1,5 +1,20 @@
+/-
+Copyright (c) 2026 Ezzeri Esa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Ezzeri Esa
+-/
 import Spectral.Stone.SelfAdjoint
 import Spectral.Spectral.Existence
+
+/-!
+# Stone's theorem: unitary groups from self-adjoint generators
+
+This file constructs a strongly continuous unitary group from a self-adjoint
+operator's spectral functional calculus applied to the phase function
+`t ↦ exp(i t r)`, and shows it generates the original operator, completing
+Stone's theorem in the direction from self-adjoint operators to unitary
+groups.
+-/
 
 open MeasureTheory Filter
 

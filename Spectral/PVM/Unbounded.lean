@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026 Ezzeri Esa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Ezzeri Esa
+-/
 import Spectral.PVM.Integral
 import Mathlib.Analysis.InnerProductSpace.LinearPMap
 import Mathlib.MeasureTheory.Measure.MeasureSpace
@@ -6,6 +11,14 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
 import Mathlib.MeasureTheory.Integral.Lebesgue.DominatedConvergence
 import Mathlib.MeasureTheory.Function.L2Space
+
+/-!
+# Unbounded spectral integration
+
+This file extends the bounded spectral integral to unbounded measurable
+functions by a monotone-limit construction, giving the partial operator
+`E_pvm.unboundedIntegral f hf` for a PVM `E_pvm` and measurable `f`.
+-/
 
 open MeasureTheory
 open Function

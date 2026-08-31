@@ -1,5 +1,18 @@
+/-
+Copyright (c) 2026 Ezzeri Esa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Ezzeri Esa
+-/
 import Mathlib.Analysis.InnerProductSpace.LinearPMap
 import Mathlib.Algebra.Star.Unitary
+
+/-!
+# Strongly continuous unitary groups and their generators
+
+This file defines strongly continuous one-parameter unitary groups and the
+infinitesimal-generator relation between such a group and a partial operator,
+via the Stone difference quotient.
+-/
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [CompleteSpace E]

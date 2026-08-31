@@ -1,4 +1,20 @@
+/-
+Copyright (c) 2026 Ezzeri Esa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Ezzeri Esa
+-/
 import Spectral.Stone.Theorem
+
+/-!
+# Intrinsic statement of Stone's generator relation
+
+This file packages Stone's generator relation intrinsically, by the exact
+punctured-neighborhood difference-quotient domain and limit, without exposing
+the library's choice-based construction of the generator. It states Stone's
+theorem in both directions: every strongly continuous unitary group has a
+self-adjoint generator, and every self-adjoint operator generates such a
+group.
+-/
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [CompleteSpace E]

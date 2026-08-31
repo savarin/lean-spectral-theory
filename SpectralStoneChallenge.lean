@@ -24,6 +24,8 @@ theorem proofs are omitted; all boundary definitions are complete.
 
 open Function MeasureTheory
 
+namespace PalomarSpectralStone
+
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [CompleteSpace E]
 
@@ -90,11 +92,14 @@ def StrongContUnitary.Generates (U : StrongContUnitary E)
     (fun t : ℝ ↦ (Complex.I * (t : ℂ))⁻¹ • (U.toFun t (x : E) - x))
     (nhdsWithin 0 {0}ᶜ) (nhds (A x))
 
-/-- Stone's theorem: strongly continuous unitary groups and self-adjoint
-operators determine one another through the infinitesimal generator. -/
+/-- Stone's theorem: every strongly continuous unitary group has a
+self-adjoint generator, and every self-adjoint operator generates such
+a group. -/
 theorem stone_theorem_intrinsic :
     (∀ U : StrongContUnitary E, ∃ A : E →ₗ.[ℂ] E,
       IsSelfAdjoint A ∧ U.Generates A) ∧
     (∀ A : E →ₗ.[ℂ] E, IsSelfAdjoint A →
       ∃ U : StrongContUnitary E, U.Generates A) := by
   sorry
+
+end PalomarSpectralStone

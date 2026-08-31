@@ -12,7 +12,7 @@ declaration. A changed source signature therefore breaks elaboration, while
 the manifest separately audits the production declaration's axioms.
 -/
 
-namespace StoneBoundary
+namespace SpectralStoneBoundary
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [CompleteSpace E]
@@ -50,4 +50,4 @@ example (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A)
     E₁.proj S = E₂.proj S :=
   spectral_theorem_uniqueness A hA E₁ E₂ h₁ h₂ S hS
 
-end StoneBoundary
+end SpectralStoneBoundary

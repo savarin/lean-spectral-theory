@@ -1,4 +1,17 @@
+/-
+Copyright (c) 2026 Ezzeri Esa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Ezzeri Esa
+-/
 import Spectral.Cayley.Unitary
+
+/-!
+# The inverse Cayley transform
+
+This file shows the Cayley transform of a self-adjoint operator is
+surjective onto `1 - U`'s complement, giving the inverse construction used to
+recover the self-adjoint operator from its unitary Cayley transform.
+-/
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [CompleteSpace E]

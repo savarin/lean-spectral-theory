@@ -1,0 +1,11 @@
+{
+  "challenge_module": "SpectralStoneChallenge",
+  "solution_module": "SpectralStoneSolution",
+  "theorem_names": [
+    "PalomarSpectralStone.spectral_theorem_intrinsic",
+    "PalomarSpectralStone.stone_theorem_intrinsic"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": false
+}

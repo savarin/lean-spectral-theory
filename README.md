@@ -36,17 +36,28 @@ functional calculus. The audience is researchers in functional
 analysis and the formalization community working on operator theory
 in Lean/Mathlib.
 
+Mathlib's `IsSelfAdjoint` on the partial map `E →ₗ.[ℂ] E` is
+star-equality for the partial-map adjoint, and it implies dense domain
+and closedness (`IsSelfAdjoint.dense_domain`, `IsSelfAdjoint.isClosed`).
+The imported predicate is the textbook self-adjointness notion, stated
+in Lean's language.
+
+No projection-valued-measure or Stone's-theorem material exists in
+Mathlib at the pinned revision (v4.33.0); Mathlib's continuous
+functional calculus covers bounded operators only. Whether this result
+exists in another proof assistant has not been searched.
+
 For a detailed proof route in plain mathematics, see
 `BLUEPRINT.md`.
 
 ## Trust boundary
 
-- `StoneChallenge.lean` (101 lines) imports only Mathlib. Every
+- `SpectralStoneChallenge.lean` (105 lines) imports only Mathlib. Every
   definition needed by the theorem statements is given
   explicitly — zero definition holes. Only the two advertised
   theorem proofs are omitted.
-- `StoneSolution.lean` imports the completed proof development.
-- `comparator-stone.json` lists both theorems and no definition holes.
+- `SpectralStoneSolution.lean` imports the completed proof development.
+- `comparator-spectral-stone.json` lists both theorems and no definition holes.
 - The proved declarations use only `propext`, `Quot.sound`, and
   `Classical.choice`.
 
@@ -106,16 +117,16 @@ export FAKE_LANDRUN=/path/to/fake-landrun.sh  # macOS only
 scripts/run_comparator.sh
 ```
 
-The submission boundary was validated on 2026-08-30 with both Lean's
-default kernel and NanoDa. Palomar runs its own pinned
+The submission boundary was validated with Lean's default kernel. A
+protected NanoDa run remains pending. Palomar runs its own pinned
 Comparator, Landrun sandbox, and NanoDa kernel.
 
 ## Notes
 
 **Why the statement is intrinsic.** The implementation constructs an
 unbounded spectral integral by bounded truncation. Exposing that
-construction in StoneChallenge.lean would make the statement depend on
-roughly 1,500 lines of implementation details. Instead,
+construction in SpectralStoneChallenge.lean would make the statement
+depend on roughly 1,500 lines of implementation details. Instead,
 `PVM.Represents` records the standard scalar-measure
 characterization. The library proves this characterization is
 equivalent to the operator equation

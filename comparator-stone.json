@@ -1,8 +1,0 @@
-{
-  "challenge_module": "StoneChallenge",
-  "solution_module": "StoneSolution",
-  "theorem_names": ["spectral_theorem_intrinsic", "stone_theorem_intrinsic"],
-  "definition_names": [],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
-  "enable_nanoda": true
-}

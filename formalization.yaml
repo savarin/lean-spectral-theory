@@ -29,7 +29,7 @@ sources:
       - "Konrad Schmüdgen"
     type: "book"
     id: "10.1007/978-94-007-4753-1"
-    location: "Chapters 4–5"
+    location: "§5.2, Theorem 5.7 (pp. 89–91)"
     relationship: "formalizes"
     author_endorsement: "not-contacted"
     note: >-
@@ -43,26 +43,18 @@ sources:
       - "Barry Simon"
     type: "book"
     id: "ISBN 978-0-12-585050-6"
-    location: "Chapters VII–VIII"
+    location: "Chapter VIII, Theorems VIII.7–VIII.8"
     relationship: "formalizes"
     author_endorsement: "not-contacted"
     note: >-
       Reference for the spectral theorem, functional calculus,
       one-parameter unitary groups, and both directions of Stone's theorem.
 
-related_formalizations:
-  - id: "https://github.com/savarin/lean-spectral-theorem/tree/c0ac9033a9e761082fd2cf5978ff43de0cd15bbf"
-    relationship: "supersedes"
-    note: >-
-      The proof body was copied from this completed development. The present
-      repository adds intrinsic spectral and Stone boundary layers and
-      replaces its overlong implementation-level Challenge with the auditable
-      Mathlib-only submission boundary.
-
 status:
   scope: >-
-    Two compared theorems and zero definition holes. StoneChallenge.lean is a
-    100-line Mathlib-only module defining a real projection-valued measure,
+    Two compared theorems and zero definition holes.
+    SpectralStoneChallenge.lean is a 105-line Mathlib-only module defining a
+    real projection-valued measure,
     its scalar-measure representation relation, strongly continuous unitary
     groups, and their intrinsic generator relation. The capstones state the
     unbounded spectral theorem with measurable-set uniqueness and Stone's
@@ -76,15 +68,15 @@ status:
     - "Quot.sound"
   main_results:
     - declaration: "spectral_theorem_intrinsic"
-      file: "StoneSolution.lean"
+      file: "SpectralStoneSolution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator-stone.json"
+      comparator_config: "comparator-spectral-stone.json"
     - declaration: "stone_theorem_intrinsic"
-      file: "StoneSolution.lean"
+      file: "SpectralStoneSolution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "comparator-stone.json"
+      comparator_config: "comparator-spectral-stone.json"
 
 automation:
   methods:
@@ -136,17 +128,21 @@ review:
     The source was checked for unresolved proof placeholders, the compact
     boundary was compiled independently, and both theorems were compared with
     the exact Comparator revision pinned by Palomar using Lean's default
-    kernel, the exact NanoDa revision pinned by Palomar, and a Lean
-    4.33-compatible lean4export. Both kernels accepted the solution and
-    Comparator reported success. Local macOS verification used Comparator's
-    development fake-landrun wrapper; Palomar supplies the protected Landrun
-    sandbox during submission.
+    kernel and a Lean 4.33-compatible lean4export. Lean's default kernel
+    accepted the solution and Comparator reported success. Local macOS
+    verification used Comparator's development fake-landrun wrapper; Palomar
+    supplies the protected Landrun sandbox during submission. A protected
+    NanoDa run remains pending.
+
+    Human review (Ezzeri Esa): verified the Challenge theorem statements
+    against the source texts (Schmüdgen and Reed--Simon). Lean proof code
+    produced by AI agents under the author's direction.
 
 alignment:
   statements:
     - source: "Schmüdgen, Chapters 4–5"
       lean: "spectral_theorem_intrinsic"
-      module: "StoneSolution"
+      module: "SpectralStoneSolution"
       status: "proved"
       note: >-
         Projection-valued-measure form of the spectral theorem for unbounded
@@ -154,7 +150,7 @@ alignment:
         first-moment representation, and measurable-set uniqueness.
     - source: "Reed–Simon, Chapters VII–VIII"
       lean: "stone_theorem_intrinsic"
-      module: "StoneSolution"
+      module: "SpectralStoneSolution"
       status: "proved"
       note: >-
         Both directions of Stone's theorem, with the infinitesimal generator

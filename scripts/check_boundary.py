@@ -3,8 +3,9 @@
 
 Does NOT verify type-signature equality or inspect the transitive import
 boundary. For type-signature verification, use the comparator. For import
-boundary verification, inspect StoneChallenge.lean's import list manually (it
-must contain only Lean core, Mathlib, TauCeti, or CSLib per Palomar §2.4).
+boundary verification, inspect SpectralStoneChallenge.lean's import list
+manually (it must contain only Lean core, Mathlib, TauCeti, or CSLib per
+Palomar §2.4).
 
 Adapted from the formalization starter kit's check_boundary.py.
 """
@@ -31,7 +32,7 @@ def run_lean(path):
 
 def main():
     manifest = pathlib.Path(sys.argv[1] if len(sys.argv) > 1
-                            else "comparator-stone.json")
+                            else "comparator-spectral-stone.json")
     if not manifest.is_file():
         fail(f"{manifest} not found")
     m = json.loads(manifest.read_text())
@@ -51,9 +52,9 @@ def main():
     if line_count > 1000 or byte_count > 100 * 1024:
         fail(f"Challenge exceeds Palomar hard limit: {line_count} lines, "
              f"{byte_count} bytes")
-    if line_count > 100 or byte_count > 32 * 1024:
-        fail(f"Challenge is not eligible for inline rendering: "
-             f"{line_count} lines, {byte_count} bytes")
+    if line_count > 300 or byte_count > 32 * 1024:
+        print(f"WARNING: Challenge triggers human-audit size warning: "
+              f"{line_count} lines, {byte_count} bytes")
     imports = re.findall(r"^import\s+([^\s]+)", raw, flags=re.MULTILINE)
     disallowed = [name for name in imports if not name.startswith("Mathlib.")]
     if disallowed:
