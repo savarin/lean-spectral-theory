@@ -36,11 +36,13 @@ countably additive in the strong operator topology. Integration is
 built in three stages: (a) simple functions integrate as finite
 weighted sums of projections; (b) bounded measurable functions
 integrate as the operator-norm limit of uniformly-convergent
-simple-function approximations; (c) unbounded measurable functions
+simple-function approximations (the uniform bound controls the
+operator norm of the difference); (c) unbounded measurable functions
 integrate via truncation — chop f at level n, integrate each bounded
-truncation, and take the vector-norm limit. The domain of the
-unbounded integral is the vectors x for which ∫|f|² d⟨E(·)x, x⟩ < ∞.
-This truncation construction is the technical core.
+truncation, and take the pointwise vector-norm limit on each vector
+in the domain. The domain of the unbounded integral is the vectors x
+for which ∫|f|² d⟨E(·)x, x⟩ < ∞. This truncation construction is
+the technical core.
 
 **Layer 3 — complex polarization (abstract, reusable).** Given a
 nonnegative real quadratic function q on a complex normed space
@@ -64,11 +66,17 @@ Proving this is a genuine PVM requires a two-stage promotion:
 projection properties (idempotence, countable additivity) are first
 established for closed sets by approximating the indicator of a
 closed set K with continuous functions max(0, 1 − n · dist(z, K)) and
-taking operator-norm limits. These are then promoted from closed to
-general Borel sets via inner regularity — approximate any measurable S
-by a closed K ⊆ S with μ(S \ K) < 1/(n + 1) and take operator limits
-again, using a contraction bound (‖Dx‖² ≤ Re⟨Dx, x⟩ for 0 ≤ D ≤ I)
-to turn measure convergence into operator-norm convergence.
+taking pointwise vector-norm limits (scalar-measure integrals of
+these approximants converge for each vector). These are then promoted
+from closed to general Borel sets via inner regularity — approximate
+any measurable S by a closed K ⊆ S with μ(S \ K) < 1/(n + 1) and
+take pointwise limits again, using a contraction bound
+(‖Dx‖² ≤ Re⟨Dx, x⟩ for 0 ≤ D ≤ I) to turn scalar-measure tail
+convergence into per-vector norm convergence. Countable additivity
+is established separately: the tail union's scalar measure tends to
+zero (a consequence of finite total mass), and the same contraction
+bound converts this into vector-norm convergence of the partial
+sums.
 
 Pull the PVM back from the unit circle to ℝ along the inverse Cayley
 coordinate z ↦ −Im(z)/(1 − Re(z)). This coordinate is undefined at
@@ -82,9 +90,11 @@ Finally, show this PVM's unbounded coordinate integral equals A:
 integrating the forward Cayley phase t ↦ (t − i)/(t + i) against the
 PVM recovers U exactly (using the pole-measure-zero result); a
 general algebraic lemma converts this into A ⊆ B (the coordinate
-integral); and showing B is self-adjoint (via the ±i test-function
-trick and linear-algebraic polarization) upgrades containment to
-equality.
+integral); and showing B is symmetric (via the ±i test-function
+trick proving the diagonal form real, then linear-algebraic
+polarization promoting this to formal self-adjointness) combines
+with the self-adjointness and maximality of A to upgrade
+containment to equality.
 
 **Layer 5 — Stone's theorem (both directions).** Proved independently
 and before spectral uniqueness.
@@ -148,8 +158,8 @@ diagonal values ⟨T(a + cₖb), a + cₖb⟩.
 
 3. **Inner-regularity promotion.** Closed-set projections to Borel-set
    projections, via a 1/(n + 1)-approximation and a contraction bound
-   that turns measure convergence into operator-norm convergence.
-   Roughly half of the existence proof.
+   that turns scalar-measure tail convergence into per-vector norm
+   convergence. Roughly half of the existence proof.
 
 4. **Pole-measure-zero.** The Cayley image of ∞ must have zero scalar
    measure for every vector. Proved from the no-fixed-vector property.
@@ -196,10 +206,12 @@ diagonal values ⟨T(a + cₖb), a + cₖb⟩.
    off-diagonal matrix elements from diagonal values. Same identity,
    different applications.
 
-6. **Self-adjointness of the coordinate integral is not immediate.**
-   It goes through a two-step detour: real diagonal (via ±i test
-   functions), then symmetric-everywhere (via the four-term
-   polarization identity).
+6. **The coordinate integral is symmetric, not independently
+   self-adjoint.** It goes through a two-step detour: real diagonal
+   (via ±i test functions), then formally self-adjoint everywhere (via
+   the four-term polarization identity). Equality with A then follows
+   from A's own self-adjointness and maximality, not from B being
+   self-adjoint on its own.
 
 7. **Stone's two directions use unrelated constructions.** Direction 1
    uses a Laplace-transform resolvent; direction 2 uses the spectral
